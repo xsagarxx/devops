@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<application-state>
+  <context id="">
+    <application id="org.gnome.Nautilus.desktop" score="0.65625" last-seen="1682961215"/>
+    <application id="gnome-initial-setup.desktop" score="0" last-seen="1681755228"/>
+    <application id="firefox_firefox.desktop" score="491.875" last-seen="1682968569"/>
+    <application id="org.gnome.Terminal.desktop" score="14808.125" last-seen="1682966098"/>
+    <application id="org.gnome.gedit.desktop" score="2.0625" last-seen="1681894452"/>
+    <application id="rhythmbox.desktop" score="0" last-seen="1681893173"/>
+    <application id="yelp.desktop" score="0" last-seen="1681893673"/>
+    <application id="gnome-control-center.desktop" score="5.9375" last-seen="1682961719"/>
+    <application id="xdg-desktop-portal-gnome.desktop" score="1" last-seen="1682961320"/>
+    <application id="update-manager.desktop" score="0" last-seen="1682701091"/>
+    <application id="code.desktop" score="875" last-seen="1682968543"/>
+    <application id="snap-store_ubuntu-software-local-file.desktop" score="37" last-seen="1682961684"/>
+  </context>
+</application-state>

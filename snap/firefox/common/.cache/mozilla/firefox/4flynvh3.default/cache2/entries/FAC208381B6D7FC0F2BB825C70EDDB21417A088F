@@ -1,0 +1,701 @@
+{
+  "name": "puppet-vscode",
+  "displayName": "Puppet",
+  "description": "Official Puppet VSCode extension. Provides full Puppet DSL intellisense, syntax highlighting, Puppet command support, Puppet node graphs, and much more",
+  "version": "1.4.0",
+  "editorComponents": {
+    "editorServices": {
+      "release": "1.3.0"
+    },
+    "editorSyntax": {
+      "release": "1.3.7"
+    }
+  },
+  "publisher": "puppet",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "icon": "images/puppet-vscode-sm.png",
+  "aiKey": "147f322c-ecdc-4db2-a818-da8be01f07f5",
+  "galleryBanner": {
+    "color": "#000000",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/puppetlabs/puppet-vscode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puppetlabs/puppet-vscode"
+  },
+  "bugs": {
+    "type": "git",
+    "url": "https://github.com/puppetlabs/puppet-vscode/issues"
+  },
+  "qna": "https://stackoverflow.com/questions/tagged/visual-studio-code+puppet",
+  "badges": [
+    {
+      "url": "https://travis-ci.com/puppetlabs/puppet-vscode.svg?branch=master",
+      "href": "https://travis-ci.com/puppetlabs/puppet-vscode",
+      "description": "Continuous integration (Travis)"
+    }
+  ],
+  "engines": {
+    "vscode": "^1.38.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages",
+    "Snippets",
+    "Formatters",
+    "Debuggers"
+  ],
+  "keywords": [
+    "puppet",
+    "puppet-lint",
+    "linters",
+    "snippet",
+    "language"
+  ],
+  "activationEvents": [
+    "onLanguage:puppet",
+    "onLanguage:puppetfile",
+    "workspaceContains:**/*.pp",
+    "workspaceContains:**/*.epp",
+    "workspaceContains:**/Puppetfile",
+    "workspaceContains:**/lib/puppet",
+    "onCommand:extension.pdkNewModule"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "puppet",
+        "aliases": [
+          "Puppet",
+          "puppet"
+        ],
+        "extensions": [
+          ".pp",
+          ".epp"
+        ],
+        "configuration": "./languages/puppet-language-configuration.json"
+      },
+      {
+        "id": "puppetfile",
+        "aliases": [
+          "Puppetfile",
+          "PuppetFile"
+        ],
+        "filenames": [
+          "Puppetfile"
+        ],
+        "configuration": "./languages/puppetfile-language-configuration.json"
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "/metadata.json",
+        "url": "https://forgeapi.puppet.com/schemas/module.json"
+      },
+      {
+        "fileMatch": "tasks/*.json",
+        "url": "https://forgeapi.puppet.com/schemas/task.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "puppet",
+        "scopeName": "source.puppet",
+        "path": "./syntaxes/puppet.tmLanguage"
+      },
+      {
+        "language": "puppetfile",
+        "scopeName": "source.ruby",
+        "path": "./syntaxes/puppetfile.cson.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "puppet",
+        "path": "./snippets/keywords.snippets.json"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/metadata.snippets.json"
+      },
+      {
+        "language": "puppetfile",
+        "path": "./snippets/puppetfile.snippets.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.puppetShowConnectionLogs",
+        "category": "Puppet",
+        "title": "Show Connection Logs"
+      },
+      {
+        "command": "extension.pdkNewModule",
+        "category": "Puppet",
+        "title": "PDK New Module",
+        "icon": {
+          "dark": "images/puppet-dag-dark.svg",
+          "light": "images/puppet-dag-light.svg"
+        }
+      },
+      {
+        "command": "extension.pdkTestUnit",
+        "category": "Puppet",
+        "title": "PDK Test Unit"
+      },
+      {
+        "command": "extension.pdkValidate",
+        "category": "Puppet",
+        "title": "PDK Validate"
+      },
+      {
+        "command": "extension.pdkNewClass",
+        "category": "Puppet",
+        "title": "PDK New Class"
+      },
+      {
+        "command": "extension.pdkNewTask",
+        "category": "Puppet",
+        "title": "PDK New Task"
+      },
+      {
+        "command": "extension.pdkNewDefinedType",
+        "category": "Puppet",
+        "title": "PDK New Defined type"
+      },
+      {
+        "command": "extension.pdkNewFact",
+        "category": "Puppet",
+        "title": "PDK New Fact"
+      },
+      {
+        "command": "extension.pdkNewFunction",
+        "category": "Puppet",
+        "title": "PDK New Function"
+      },
+      {
+        "command": "extension.puppetResource",
+        "category": "Puppet",
+        "title": "Puppet Resource"
+      },
+      {
+        "command": "puppet.puppetShowNodeGraphToSide",
+        "title": "Open Node Graph to the Side",
+        "category": "Puppet",
+        "icon": {
+          "light": "./media/PreviewOnRightPane_16x.svg",
+          "dark": "./media/PreviewOnRightPane_16x_dark.svg"
+        }
+      },
+      {
+        "command": "puppet.refreshFacts",
+        "title": "Refresh",
+        "icon": {
+          "light": "assets/icons/light/sync.svg",
+          "dark": "assets/icons/dark/sync.svg"
+        }
+      },
+      {
+        "command": "puppet.goToPuppetfileDefinition",
+        "title": "Go to definition",
+        "enablement": "puppet:puppetfileEnabled",
+        "icon": {
+          "light": "assets/icons/light/sync.svg",
+          "dark": "assets/icons/dark/sync.svg"
+        }
+      },
+      {
+        "command": "puppet.refreshPuppetfileDependencies",
+        "title": "Refresh Puppetfile View",
+        "enablement": "puppet:puppetfileEnabled",
+        "icon": {
+          "light": "assets/icons/light/sync.svg",
+          "dark": "assets/icons/dark/sync.svg"
+        }
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "puppet-toolbar",
+          "title": "Puppet Toolbar",
+          "icon": "images/puppet-dag-dark.svg"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "puppetFacts",
+        "contents": "No facts found\n[Refresh](command:puppet.refreshFacts)"
+      },
+      {
+        "view": "puppetfile",
+        "contents": "No Puppetfile found\n[Refresh](command:puppet.refreshPuppetfileDependencies)",
+        "when": "puppet:puppetfileEnabled"
+      }
+    ],
+    "views": {
+      "puppet-toolbar": [
+        {
+          "id": "puppetFacts",
+          "name": "Facts"
+        },
+        {
+          "id": "puppetfile",
+          "name": "Puppetfile",
+          "when": "puppet:puppetfileEnabled"
+        }
+      ]
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "extension.puppetShowConnectionLogs"
+        },
+        {
+          "command": "extension.pdkNewModule"
+        },
+        {
+          "command": "extension.pdkTestUnit"
+        },
+        {
+          "command": "extension.pdkValidate"
+        },
+        {
+          "command": "extension.pdkNewClass"
+        },
+        {
+          "command": "extension.pdkNewTask"
+        },
+        {
+          "command": "extension.pdkNewDefinedType"
+        },
+        {
+          "command": "extension.pdkNewFact"
+        },
+        {
+          "command": "extension.pdkNewFunction"
+        },
+        {
+          "command": "extension.puppetResource",
+          "when": "editorLangId == 'puppet'"
+        },
+        {
+          "command": "puppet.puppetShowNodeGraphToSide",
+          "when": "editorLangId == 'puppet'"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "extension.pdkNewModule",
+          "when": "config.puppet.titleBar.pdkNewModule.enable",
+          "group": "navigation@100"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewClass",
+          "group": "pdk@2"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewTask",
+          "group": "pdk@3"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewDefinedType",
+          "group": "pdk@4"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewFact",
+          "group": "pdk@5"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewFunction",
+          "group": "pdk@6"
+        },
+        {
+          "when": "editorLangId == 'puppet' ",
+          "command": "extension.pdkValidate",
+          "group": "pdk@7"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkTestUnit",
+          "group": "pdk@8"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "puppet.puppetShowNodeGraphToSide",
+          "group": "puppet"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.puppetResource",
+          "group": "puppet"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewClass",
+          "group": "pdk@1"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewTask",
+          "group": "pdk@2"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewDefinedType",
+          "group": "pdk@3"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewFact",
+          "group": "pdk@4"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkNewFunction",
+          "group": "pdk@5"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkValidate",
+          "group": "pdk@6"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.pdkTestUnit",
+          "group": "pdk@7"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "puppet.puppetShowNodeGraphToSide",
+          "group": "puppet"
+        },
+        {
+          "when": "editorLangId == 'puppet'",
+          "command": "extension.puppetResource",
+          "group": "puppet"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "puppet.refreshFacts",
+          "when": "view == puppetFacts",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "puppet.goToPuppetfileDefinition",
+          "when": "view == puppetfile"
+        }
+      ]
+    },
+    "configurationDefaults": {
+      "[puppet]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "files.insertFinalNewline": true
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Puppet",
+      "properties": {
+        "puppet.editorService.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable advanced Puppet Language Features"
+        },
+        "puppet.editorService.debugFilePath": {
+          "type": "string",
+          "default": "",
+          "description": "The absolute filepath where the Puppet Editor Service will output the debugging log. By default no logfile is generated"
+        },
+        "puppet.editorService.featureFlags": {
+          "type": "array",
+          "default": [],
+          "description": "An array of strings of experimental features to enable in the Puppet Editor Service"
+        },
+        "puppet.editorService.foldingRange.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable syntax aware code folding provider"
+        },
+        "puppet.editorService.foldingRange.showLastLine": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show or hide the last line in code folding regions"
+        },
+        "puppet.editorService.formatOnType.enable": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable/disable the Puppet document on-type formatter, for example hashrocket alignment"
+        },
+        "puppet.editorService.formatOnType.maxFileSize": {
+          "type": "integer",
+          "default": 4096,
+          "minimum": 0,
+          "description": "Sets the maximum file size (in Bytes) that document on-type formatting will occur. Setting this to zero (0) will disable the file size check. Note that large file sizes can cause performance issues."
+        },
+        "puppet.editorService.hover.showMetadataInfo": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable showing Puppet Module version information in the metadata.json file"
+        },
+        "puppet.editorService.loglevel": {
+          "type": "string",
+          "default": "normal",
+          "description": "Set the logging verbosity level for the Puppet Editor Service, with Debug producing the most output and Error producing the least",
+          "enum": [
+            "debug",
+            "error",
+            "normal",
+            "warning",
+            "verbose"
+          ]
+        },
+        "puppet.editorService.protocol": {
+          "type": "string",
+          "default": "stdio",
+          "description": "The protocol used to communicate with the Puppet Editor Service. By default the local STDIO protocol is used.",
+          "enum": [
+            "stdio",
+            "tcp"
+          ]
+        },
+        "puppet.editorService.puppet.confdir": {
+          "type": "string",
+          "default": "",
+          "description": "The Puppet configuration directory. See https://puppet.com/docs/puppet/latest/dirs_confdir.html for more information"
+        },
+        "puppet.editorService.puppet.environment": {
+          "type": "string",
+          "default": "",
+          "description": "The Puppet environment to use. See https://puppet.com/docs/puppet/latest/config_print.html#environments for more information"
+        },
+        "puppet.editorService.puppet.modulePath": {
+          "type": "string",
+          "default": "",
+          "description": "Additional module paths to use when starting the Editor Services. On Windows this is delimited with a semicolon, and on all other platforms, with a colon. For example C:\\Path1;C:\\Path2"
+        },
+        "puppet.editorService.puppet.vardir": {
+          "type": "string",
+          "default": "",
+          "description": "The Puppet cache directory. See https://puppet.com/docs/puppet/latest/dirs_vardir.html for more information"
+        },
+        "puppet.editorService.puppet.version": {
+          "type": "string",
+          "default": "",
+          "description": "The version of Puppet to use. For example '5.4.0'. This is generally only applicable when using the PDK installation type. If Puppet Editor Services is unable to use this version, it will default to the latest available version of Puppet."
+        },
+        "puppet.editorService.tcp.address": {
+          "type": "string",
+          "description": "The IP address or hostname of the remote Puppet Editor Service to connect to, for example 'computer.domain' or '192.168.0.1'. Only applicable when the editorService.protocol is set to tcp"
+        },
+        "puppet.validate.resolvePuppetfiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable using dependency resolution for Puppetfiles"
+        },
+        "puppet.editorService.tcp.port": {
+          "type": "integer",
+          "description": "The TCP Port of the remote Puppet Editor Service to connect to. Only applicable when the editorService.protocol is set to tcp"
+        },
+        "puppet.editorService.timeout": {
+          "type": "integer",
+          "default": 10,
+          "description": "The timeout to connect to the Puppet Editor Service"
+        },
+        "puppet.format.enable": {
+          "type": "boolean",
+          "scope": "window",
+          "default": true,
+          "description": "Enable/disable the Puppet document formatter"
+        },
+        "puppet.installDirectory": {
+          "type": "string",
+          "markdownDescription": "The fully qualified path to the Puppet install directory. This can be a PDK or Puppet Agent installation. For example: 'C:\\Program Files\\Puppet Labs\\Puppet' or '/opt/puppetlabs/puppet'. If this is not set the extension will attempt to detect the installation directory. Do **not** use when `#puppet.installType#` is set to `auto`"
+        },
+        "puppet.installType": {
+          "type": "string",
+          "default": "auto",
+          "markdownDescription": "The type of Puppet installation. Either the Puppet Development Kit (pdk) or the Puppet Agent (agent). Choose `auto` to have the extension detect which to use automatically based on default install locations",
+          "enum": [
+            "auto",
+            "pdk",
+            "agent"
+          ],
+          "enumDescriptions": [
+            "The exention will use the PDK or the Puppet Agent based on default install locations. When both are present, it will use the PDK",
+            "Use the PDK as an installation source",
+            "Use the Puppet Agent as an installation source"
+          ]
+        },
+        "puppet.notification.nodeGraph": {
+          "type": "string",
+          "default": "messagebox",
+          "description": "The type of notification used when a node graph is being generated. Default value of messagebox",
+          "enum": [
+            "messagebox",
+            "statusbar",
+            "none"
+          ]
+        },
+        "puppet.notification.puppetResource": {
+          "type": "string",
+          "default": "messagebox",
+          "description": "The type of notification used when a running Puppet Resouce. Default value of messagebox",
+          "enum": [
+            "messagebox",
+            "statusbar",
+            "none"
+          ]
+        },
+        "puppet.pdk.checkVersion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable checking if installed PDK version is latest"
+        },
+        "puppet.titleBar.pdkNewModule.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable the PDK New Module icon in the Editor Title Bar"
+        }
+      }
+    },
+    "breakpoints": [
+      {
+        "language": "puppet"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "Puppet",
+        "label": "Puppet Debugger",
+        "languages": [
+          "puppet"
+        ],
+        "configurationSnippets": [
+          {
+            "label": "Puppet: Apply Current File",
+            "description": "Apply current file (in active editor window) under debugger",
+            "body": {
+              "type": "Puppet",
+              "request": "launch",
+              "name": "Puppet Apply current file",
+              "manifest": "^\"\\${file}\"",
+              "args": [],
+              "noop": true,
+              "cwd": "^\"\\${file}\""
+            }
+          }
+        ],
+        "configurationAttributes": {
+          "launch": {
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Deprecated. Please use the 'manifest' property instead to specify the absolute path to the Puppet manifest to launch under the debugger."
+              },
+              "manifest": {
+                "type": "string",
+                "description": "Optional: Absolute path to the Puppet manifest to launch under the debugger."
+              },
+              "noop": {
+                "type": "boolean",
+                "description": "Optional: Whether the the Puppet run is in NoOp mode. Default is true.",
+                "default": true
+              },
+              "args": {
+                "type": "array",
+                "description": "Command line arguments to pass to Puppet.",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "cwd": {
+                "type": "string",
+                "description": "Absolute path to the working directory. Default is the current workspace.",
+                "default": "${workspaceRoot}"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pwsh -file ./build.ps1 build",
+    "compile": "tsc -p ./",
+    "build": "pwsh -file ./build.ps1",
+    "watch": "npm run build && tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runtest.js",
+    "format": "prettier --write ./**/*.{ts,js,json}",
+    "lint": "eslint --ext .ts src",
+    "fix": "eslint --fix --ext .ts src"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^12.0.8",
+    "@types/vscode": "^1.38.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "cytoscape": "^3.14.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "glob": "^7.1.4",
+    "mocha": "^9.1.2",
+    "prettier": "^2.0.5",
+    "typescript": "^3.5.2",
+    "vsce": "^1.93.0",
+    "vscode-test": "^1.0.2"
+  },
+  "dependencies": {
+    "axios": "0.21.2",
+    "jsonc-parser": "~2.1.0",
+    "vscode-debugadapter": "^1.19.0",
+    "vscode-debugprotocol": "^1.19.0",
+    "vscode-extension-telemetry": "0.1.2",
+    "vscode-languageclient": "^5.2.1"
+  }
+}
+ÜŸ¾Ih´      dKýHdKýIE†'IdsŠG   Š    O^partitionKey=%28http%2Clocalhost%2C8443%29,a,:https://openvsxorg.blob.core.windows.net/resources/puppet/puppet-vscode/1.4.0/package.json necko:classified 1 strongly-framed 1 security-info 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LmF6dXJlLm5ldIIcKi56MTEuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTIuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTMuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTQuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTUuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTYuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTcuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTguYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MTkuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjAuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjEuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjIuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjMuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjQuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjUuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjYuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjcuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjguYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MjkuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzAuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzEuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzIuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzMuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzQuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzUuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzYuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzcuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzguYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56MzkuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDAuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDEuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDIuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDMuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDQuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDUuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDYuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDcuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDguYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NDkuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIcKi56NTAuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldDAMBgNVHRMBAf8EAjAAMGQGA1UdHwRdMFswWaBXoFWGU2h0dHA6Ly93d3cubWljcm9zb2Z0LmNvbS9wa2lvcHMvY3JsL01pY3Jvc29mdCUyMEF6dXJlJTIwVExTJTIwSXNzdWluZyUyMENBJTIwMDEuY3JsMGYGA1UdIARfMF0wUQYMKwYBBAGCN0yDfQEBMEEwPwYIKwYBBQUHAgEWM2h0dHA6Ly93d3cubWljcm9zb2Z0LmNvbS9wa2lvcHMvRG9jcy9SZXBvc2l0b3J5Lmh0bTAIBgZngQwBAgIwHwYDVR0jBBgwFoAUDyBd16FXlduSzyvQx8J3BM5ygHYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMA0GCSqGSIb3DQEBDAUAA4ICAQCCcILXs7c0Td6XJpW2k1mnFyOqrS9shDdpMeilJK7NeFoYJ3lu6yjGPuWGi+yTX93GAU5KE+HmKzN8QBG3fex0DM+Qw3UnkEKun9Y0ZWu+vuvd5y50ipqO25T8Jio/37AkfapecspKvTm9RZya8dw5SkPXTEy2fATXSO/ZbgovpGdDlL6KJpguBS9EHzGHYKH7Uv+YcNP4hjdWM+GXIrXGlM0OBeUtqFvjvvj9pNvcnI/xq1Dc8D82RzEOz6pwurXriksh6wgJBwGBtZlLs5ptCwAnTLxro2Ax4geBioCuZeeLCbEvEetI//GnJ4/WdJXijebLyWj6sTiRCZcu76FAHzpUN34/jnu9CZVAPjS7zWeKk46qc3jN1BvNTKN/eQRG6KyRI9QLnkRPsCjCgjRZZiPIEyYQShen0AiMN1jrRTFmxQgdzf23QJ3Nnyw/Y81bXW7kve0UiK5D5bgGmxofUuM3jC2SoKtshCqDXT0hx7evVK/3TWr16nhzsfuxK3JAfvAwPTx89M7VbunOPK7tJaGGbQ9nTHH1yOB8nXG116zw413h2uScR+FT4XHE88bXCbhb7bEvgiT/A/KLTawAVblhmdZXZwuiR1mNNO1fh7ScwljtQN9UJ+y+mv41X27FCgIe179iz5SFZC4Dk7kvAnbQ+2KtYwRIbKSWKdyuBsAwAAMAAAAAAAEBAAAAAAAABFAzODQAAAAOUlNBLVBTUy1TSEEyNTYAA2YKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAADoMwgg5/MIIMZ6ADAgECAhMzAI3ZYc4LAHtTMlsQAAAAjdlhMA0GCSqGSIb3DQEBDAUAMFkxCzAJBgNVBAYTAlVTMR4wHAYDVQQKExVNaWNyb3NvZnQgQ29ycG9yYXRpb24xKjAoBgNVBAMTIU1pY3Jvc29mdCBBenVyZSBUTFMgSXNzdWluZyBDQSAwMTAeFw0yMzAxMjYwOTM3MTRaFw0yNDAxMjEwOTM3MTRaMG4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSAwHgYDVQQDDBcqLmJsb2IuY29yZS53aW5kb3dzLm5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANoDh7ibM9SOA5BsneB72f+cGsdCmZP5LsUk94eXDtEX3+jQ+wkAhtSZ1n7TRcNtIIEN8vvF26G8b4wEqapuGQvpdGAcu4Sol6pa3wSMQJ0Jyz2MfRilk+JiXSHxi5UJq8Qx0IO9PGJzxVUGrNRLWKWIxbYTlUEheugTvRcxuF3kaW2XOyVs+iNEBWch0KLYEGbaCMUmQzvn1d5BNzqtZIkWbwuczJIWiEWxW2u8ir4QYbKXgRUFHmLeqs2/Bw9jI483uFL8sicbNjyuI9uQafnVGPmKd/zNiYNfFVKiG2qT5gdEIovBSdinUIuSXY1HGUQIId4OsPGohfRcKpAtLrUCAwEAAaOCCikwggolMIIBfgYKKwYBBAHWeQIEAgSCAW4EggFqAWgAdgDuzdBk1dsazsVct520zROiModGfLzs3sNRSFlGcR+1mwAAAYXteYCUAAAEAwBHMEUCIQC/1YqwZf9xoo3xVA04LaCSBa5WlJoLBmlzvfkFNk0ekwIgKCY/BAW9UOKuIHeZow6/MV+mqpgXpyS6dIWfdtYYeq8AdgDatr9rP7W2Ip+bwrtca+hwkXFsu1GEhTS9pD0wSNf7qwAAAYXteYC0AAAEAwBHMEUCIB1lbt9ALx87BCfOjwTYznFf3qry5DW1QYLjUcJMKd6mAiEArkEmDm2aPSSLzE6mYF8+Cs4jdrO30vS4z2z5XV/XRIkAdgBz2Z6JG0yWeKAgfUed5rLGHNBRXnEZKoxrgBB6wXdytQAAAYXteYEGAAAEAwBHMEUCIQCoKHlrRk/aAjyTFiVazqjs9PHOwu5bFqw9d3oGDtFOSwIgHwZb+1hSL85EQqiJSHE2BGl7nscLRsNksLYjTJJXYSEwJwYJKwYBBAGCNxUKBBowGDAKBggrBgEFBQcDAjAKBggrBgEFBQcDATA8BgkrBgEEAYI3FQcELzAtBiUrBgEEAYI3FQiHvdcbgefrRoKBnS6O0AyH8NodXYKE5WmC86c+AgFkAgElMIGuBggrBgEFBQcBAQSBoTCBnjBtBggrBgEFBQcwAoZhaHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3BraW9wcy9jZXJ0cy9NaWNyb3NvZnQlMjBBenVyZSUyMFRMUyUyMElzc3VpbmclMjBDQSUyMDAxJTIwLSUyMHhzaWduLmNydDAtBggrBgEFBQcwAYYhaHR0cDovL29uZW9jc3AubWljcm9zb2Z0LmNvbS9vY3NwMB0GA1UdDgQWBBT4yGN62SgbJj2MvjuEqJh9ALd7QTAOBgNVHQ8BAf8EBAMCBLAwggY8BgNVHREEggYzMIIGL4IXKi5ibG9iLmNvcmUud2luZG93cy5uZXSCJyouZHViMDlwcmRzdHIwOGEuc3RvcmUuY29yZS53aW5kb3dzLm5ldIIYKi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghsqLnoxLmJsb2Iuc3RvcmFnZS5henVyZS5uZXSCGyouejIuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIbKi56My5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghsqLno0LmJsb2Iuc3RvcmFnZS5henVyZS5uZXSCGyouejUuYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIbKi56Ni5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghsqLno3LmJsb2Iuc3RvcmFnZS5henVyZS5uZXSCGyouejguYmxvYi5zdG9yYWdlLmF6dXJlLm5ldIIbKi56OS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxMC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxMS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxMi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxMy5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxNC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxNS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxNi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxNy5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxOC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoxOS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyMC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyMS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyMi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyMy5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyNC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyNS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyNi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyNy5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyOC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnoyOS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozMC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozMS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozMi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozMy5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozNC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozNS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozNi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozNy5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozOC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLnozOS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0MC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0MS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0Mi5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0My5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0NC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0NS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0Ni5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0Ny5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0OC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno0OS5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0ghwqLno1MC5ibG9iLnN0b3JhZ2UuYXp1cmUubmV0MAwGA1UdEwEB/wQCMAAwZAYDVR0fBF0wWzBZoFegVYZTaHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3BraW9wcy9jcmwvTWljcm9zb2Z0JTIwQXp1cmUlMjBUTFMlMjBJc3N1aW5nJTIwQ0ElMjAwMS5jcmwwZgYDVR0gBF8wXTBRBgwrBgEEAYI3TIN9AQEwQTA/BggrBgEFBQcCARYzaHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3BraW9wcy9Eb2NzL1JlcG9zaXRvcnkuaHRtMAgGBmeBDAECAjAfBgNVHSMEGDAWgBQPIF3XoVeV25LPK9DHwncEznKAdjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDQYJKoZIhvcNAQEMBQADggIBAIJwgteztzRN3pcmlbaTWacXI6qtL2yEN2kx6KUkrs14WhgneW7rKMY+5YaL7JNf3cYBTkoT4eYrM3xAEbd97HQMz5DDdSeQQq6f1jRla76+693nLnSKmo7b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 request-method GET response-head HTTP/1.1 200 OK
+Cache-Control: max-age=2592000, public
+Content-Length: 21498
+Content-Type: application/json
+Last-Modified: Wed, 13 Oct 2021 18:40:15 GMT
+ETag: 0x8D98E78E5C869DF
+Server: Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id: 34ec937a-901e-000f-27f3-79329d000000
+x-ms-version: 2009-09-19
+x-ms-lease-status: unlocked
+x-ms-blob-type: BlockBlob
+Access-Control-Allow-Origin: *
+Date: Fri, 28 Apr 2023 17:07:19 GMT
+ original-response-headers Cache-Control: max-age=2592000, public
+Content-Length: 21498
+Content-Type: application/json
+Last-Modified: Wed, 13 Oct 2021 18:40:15 GMT
+ETag: 0x8D98E78E5C869DF
+Server: Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id: 34ec937a-901e-000f-27f3-79329d000000
+x-ms-version: 2009-09-19
+x-ms-lease-status: unlocked
+x-ms-blob-type: BlockBlob
+Access-Control-Allow-Origin: *
+Date: Fri, 28 Apr 2023 17:07:19 GMT
+ ctid 1 net-response-time-onstart 929 net-response-time-onstop 1100   Sú

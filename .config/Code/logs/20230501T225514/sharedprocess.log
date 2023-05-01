@@ -1,0 +1,4 @@
+2023-05-01 22:55:25.382 [info] Started initializing default profile extensions in extensions installation folder. file:///home/sagar/.vscode/extensions
+2023-05-01 22:55:27.914 [warning] Failed to create default profile extensions manifest in extensions installation folder. file:///home/sagar/.vscode/extensions Unable to create file 'vscode-userdata:/home/sagar/.vscode/extensions/extensions.json' that already exists when overwrite flag is not set
+2023-05-01 22:55:27.923 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/sagar/.vscode/extensions
+2023-05-01 22:55:29.355 [warning] No ptyHost heartbeat after 6 seconds
